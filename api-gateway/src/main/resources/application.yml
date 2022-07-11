@@ -1,0 +1,22 @@
+server:
+  port: 88
+
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            #配置全局跨越
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            #上面两个只能满足简单跨域
+            allowedHeaders: "*"
+            allowCredentials: true
+      routes:
+        - id: gmall-productr
+          uri: lb://service-product
+          predicates:
+            - Path=/admin/product/**
+
+
